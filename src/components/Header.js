@@ -7,7 +7,7 @@ const Header = () => {
       <h1 class="text-2xl ml-12 ">Where in the world</h1>
       <div class="ml-auto "> 
              
-        <button class="text-white border-nonew-48 mr-20 flex items-center text-1xl "><Moon color="black" className="mr-2" />Dark Mode</button>
+        <button class="text-white border-nonew-48 mr-20 flex items-center text-1xl "><Moon color="black" fill="#FFFFFF"  size={26} stroke="#FFFFFF" className="mr-2 mb-1"/>Dark Mode</button>
       </div>
     </header>
   );

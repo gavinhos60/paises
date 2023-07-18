@@ -19,7 +19,7 @@ const Countries = () => {
   }, []);
 
   const germany = countries.filter((country) => country.name.common === 'Germany'); 
-  const usa = countries.filter((country) => country.name.common === 'United States'); 
+  
 
   return (
     <div>
@@ -28,13 +28,7 @@ const Countries = () => {
           <h3>{country.name.common}</h3>
           <img src={country.flags.svg} alt={`Bandeira ${country.name.common}`} />
         </article>
-      ))}
-      {usa.map((country) => (
-        <article key={country.name.common}>
-          <h3>{country.name.common}</h3>
-          <img src={country.flags.svg} alt={`Bandeira ${country.name.common}`} />
-        </article>
-      ))}
+      ))}      
     </div>
   );
 };
