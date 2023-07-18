@@ -18,8 +18,8 @@ const Countries = () => {
     fetchCountryData();
   }, []);
 
-  const germany = countries.filter((country) => country.name.common === 'Germany'); // Filtra o país com o nome 'Germany' (Alemanha)
-  const usa = countries.filter((country) => country.name.common === 'United States'); // Filtra o país com o nome 'United States' (Estados Unidos)
+  const germany = countries.filter((country) => country.name.common === 'Germany'); 
+  const usa = countries.filter((country) => country.name.common === 'United States'); 
 
   return (
     <div>
