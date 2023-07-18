@@ -10,3 +10,19 @@ body{
   background-color:#202d36;
   font-family: 'Comfortaa', cursive;
 }
+
+
+body.dark {
+  background-color: white;
+  color: black;
+}
+
+header.dark{
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: white;
+  color: black;
+}
