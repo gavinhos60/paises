@@ -6,7 +6,7 @@ const Pesquisa = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value);    
   };
 
   return (
@@ -18,8 +18,7 @@ const Pesquisa = () => {
           </button>
         </Link>
         <input         
-          type="text"
-          value={searchTerm}
+          type="text"         
           onChange={handleChange}
           className="bg-header w-full h-full ml-6  flex text-center text-white"
           placeholder="Search for a contry..."

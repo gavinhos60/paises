@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Pesquisa from "./Pesquisa";
 import Filtro from "./Filtro";
 
-const Africa = () => {
+const Continents = () => {
   const [countries, setCountries] = useState([]);
-
+  const { name } = useParams();
   useEffect(() => {
     const fetchCountryData = async () => {
       const response = await fetch(
-        "https://restcountries.com/v3.1/region/africa"
+        "https://restcountries.com/v3.1/region/" + name
       );
       const countries = await response.json();
       setCountries(countries);
@@ -63,4 +63,4 @@ const Africa = () => {
   );
 };
 
-export default Africa;
+export default Continents;

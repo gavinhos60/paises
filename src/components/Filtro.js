@@ -1,25 +1,20 @@
 import React from "react";
-
 import { useNavigate } from "react-router";
+
 const Filtro = () => {
-  
-  
   const navigate = useNavigate();
+
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-   
-    if (selectedValue === "America") {
-      navigate("/america");
-    } else if (selectedValue === "Africa") {
-      navigate("/africa");
-    } else if (selectedValue === "Europe") {
-      navigate("/europe");
-    } else if (selectedValue === "Oceania") {
-      navigate("/oceania");
-    } else if (selectedValue === "Asia") {
-      navigate("/asia");
-    }
+
+    if (selectedValue !== "") {
+      navigate(`/Continents/${selectedValue}`);
+    } 
   };
+
+  // Utilize useEffect caso você precise executar algo ao montar ou desmontar o componente.
+  // Se não precisar, você pode simplesmente remover o useEffect.
+
   return (
     <div>
       <select
