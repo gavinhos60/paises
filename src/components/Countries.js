@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Search } from "lucide-react";
-import { useNavigate } from 'react-router';
+
+
 import "../style.css/countries.css";
 import { Link } from "react-router-dom";
+import Pesquisa from "./Pesquisa";
+import Filtro from "./Filtro";
 
 const url = "https://restcountries.com/v3.1/all";
 
 const Countries = () => {
-  const [countries, setCountries] = useState([]);
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  const [countries, setCountries] = useState([]);  
 
   const fetchCountryData = async () => {
     const response = await fetch(url);
@@ -44,56 +40,15 @@ const Countries = () => {
     (country) => country.name.common === "Portugal"
   );
 
-  const navigate = useNavigate();
-  const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-
-    // Lógica para lidar com o valor selecionado (se necessário)
-
-    // Navega para a página de destino com base no valor selecionado
-    if (selectedValue === "America") {
-      navigate("/america");
-    } else if (selectedValue === "Africa") {
-      navigate("/africa");
-    } else if (selectedValue === "Europe") {
-      navigate("/europe");
-    }else if (selectedValue === "Oceania") {
-      navigate("/oceania");
-    }else if (selectedValue === "Asia") {
-      navigate("/asia");
-    }
-  };
+  
   return (
     <div className="">
       <div className="flex items-center justify-center mt-16 ">
         <div className="w-5/6 flex justify-between items-start  ">
           <div>
-            <div className=" bg-header rounded text-center flex items-center  w-450 h-12">
-              <Link className="ml-3" to={`/countries/${searchTerm}`}>
-                <button>
-                  <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />
-                </button>
-              </Link>
-              <input
-                value={searchTerm}
-                onChange={handleChange}
-                type="text"
-                className="bg-header w-full h-full ml-6  flex text-center text-white"
-                placeholder="Search for a contry..."
-              />
-            </div>
-          </div>
-          <div className="">
-            <select className="bg-header text-xs h-12 ml-6 text-center w-48 text-white rounded"
-            onChange={handleSelectChange}>
-              <option value="">Filter By Region</option>
-              <option value="America">America</option>
-              <option value="Africa">Africa</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Oceania">Oceania</option>
-            </select>
-          </div>
+         <Pesquisa />
+          </div>         
+            <Filtro />          
         </div>
       </div>
       <div className="w-5/6 h-750 ml-40 ">
