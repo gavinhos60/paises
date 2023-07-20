@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Country = () => {
+const Africa = () => {
   const [country, setCountry] = useState([]);
-  const { name } = useParams();
 
   useEffect(() => {
     const fetchCountryData = async () => {
       const response = await fetch(
-        "https://restcountries.com/v3.1/name/" + name
+        "https://restcountries.com/v3.1/region/africa"
       );
       const country = await response.json();
       
-      setCountry(country);
-      console.log(country);
-     
+      setCountry(country);     
     };
     fetchCountryData();
   });
+
   return (
-    <div className="flex justify-center">
-        
+    <div className="flex justify-center">        
       <Link to="/">BackHome</Link>
       <div class="bg-header w-294  text-white rounded shadow-md">
             {country.map((country) => (
@@ -51,4 +48,4 @@ const Country = () => {
   );
 };
 
-export default Country;
+export default Africa;
