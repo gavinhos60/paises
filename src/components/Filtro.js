@@ -1,30 +1,27 @@
 import React from "react";
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 const Filtro = () => {
+  
   
   const navigate = useNavigate();
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
-
-    // Lógica para lidar com o valor selecionado (se necessário)
-
-    // Navega para a página de destino com base no valor selecionado
+   
     if (selectedValue === "America") {
       navigate("/america");
     } else if (selectedValue === "Africa") {
       navigate("/africa");
     } else if (selectedValue === "Europe") {
       navigate("/europe");
-    }else if (selectedValue === "Oceania") {
+    } else if (selectedValue === "Oceania") {
       navigate("/oceania");
-    }else if (selectedValue === "Asia") {
+    } else if (selectedValue === "Asia") {
       navigate("/asia");
     }
-  }
+  };
   return (
     <div>
-     
       <select
         className="bg-header text-xs h-12 ml-6 text-center w-48 text-white rounded"
         onChange={handleSelectChange}
@@ -40,4 +37,4 @@ const Filtro = () => {
   );
 };
 
-export default Filtro
+export default Filtro;
