@@ -16,9 +16,10 @@ const Africa = () => {
     };
     fetchCountryData();
   });
-
+  
   return (
-    <div className="flex justify-center">        
+    <div className="flex justify-center">
+        
       <Link to="/">BackHome</Link>
       <div class="bg-header w-294  text-white rounded shadow-md">
             {country.map((country) => (

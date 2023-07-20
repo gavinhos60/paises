@@ -9,13 +9,16 @@ import Europe from "./components/Europe";
 import America from "./components/America";
 import Oceania from "./components/Oceania";
 import Africa from "./components/Africa";
+import Filtro from "./components/Filtro";
+
 
 
 function App() {
   return (
     <div>
       <Router>
-        <Header />
+        <Header />  
+       
         <Routes>
           <Route path="/" element={<Countries />} />
           <Route path="/countries/:name" element={<Country />} />
