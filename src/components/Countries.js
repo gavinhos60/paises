@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
-
+import { useNavigate } from 'react-router';
 import "../style.css/countries.css";
 import { Link } from "react-router-dom";
 
@@ -43,12 +43,32 @@ const Countries = () => {
   const portugal = countries.filter(
     (country) => country.name.common === "Portugal"
   );
+
+  const navigate = useNavigate();
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+
+    // Lógica para lidar com o valor selecionado (se necessário)
+
+    // Navega para a página de destino com base no valor selecionado
+    if (selectedValue === "America") {
+      navigate("/america");
+    } else if (selectedValue === "Africa") {
+      navigate("/africa");
+    } else if (selectedValue === "Europe") {
+      navigate("/europe");
+    }else if (selectedValue === "Oceania") {
+      navigate("/oceania");
+    }else if (selectedValue === "Asia") {
+      navigate("/asia");
+    }
+  };
   return (
     <div className="">
       <div className="flex items-center justify-center mt-16 ">
         <div className="w-5/6 flex justify-between items-start  ">
           <div>
-            <div className=" bg-header rounded text-center flex items-center shadow-md w-450 h-12">
+            <div className=" bg-header rounded text-center flex items-center  w-450 h-12">
               <Link className="ml-3" to={`/countries/${searchTerm}`}>
                 <button>
                   <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />
@@ -58,17 +78,20 @@ const Countries = () => {
                 value={searchTerm}
                 onChange={handleChange}
                 type="text"
-                
                 className="bg-header w-full h-full ml-6  flex text-center text-white"
                 placeholder="Search for a contry..."
               />
             </div>
           </div>
           <div className="">
-            <select className="bg-header h-12 ml-6 text-center w-44 text-white rounded">
-              <option value="valor1">None</option>
-              <option value="valor2">Valor 2</option>
-              <option value="valor3">Valor 3</option>
+            <select className="bg-header text-xs h-12 ml-6 text-center w-48 text-white rounded"
+            onChange={handleSelectChange}>
+              <option value="">Filter By Region</option>
+              <option value="America">America</option>
+              <option value="Africa">Africa</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
             </select>
           </div>
         </div>
@@ -76,7 +99,7 @@ const Countries = () => {
       <div className="w-5/6 h-750 ml-40 ">
         <div class="grid grid-cols-4 gap-36 mt-10">
           <div className="dark-mode">
-            <div class="bg-header w-294  text-white rounded shadow-2xl">
+            <div class="bg-header w-294 h-92 text-white rounded shadow-md">
               {germany.map((country) => (
                 <article key={country.name.common}>
                   <div className="">
@@ -87,7 +110,12 @@ const Countries = () => {
                     />
                   </div>
                   <div className="p-5 font-bold">
-                    <h3>{country.name.common}</h3>
+                    <Link
+                      className="ml-36 text-blue-700"
+                      to={`/countries/${country.name.common}`}
+                    >
+                      <h3>{country.name.common}</h3>
+                    </Link>
                     <div className="font-normal">
                       <div className="mt-3 text-xs">
                         Population: {country.population}
@@ -95,18 +123,12 @@ const Countries = () => {
                       <p className="mt-1 text-xs">Region: {country.region}</p>
                       <p className="mt-1 text-xs">Capital: {country.capital}</p>
                     </div>
-                    <Link
-                      className="ml-3"
-                      to={`/countries/${country.name.common}`}
-                    >
-                      Learn More
-                    </Link>
                   </div>
                 </article>
               ))}
             </div>
           </div>
-          <div class="bg-header w-294  text-white rounded shadow-2xl">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
             {eua.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -117,7 +139,12 @@ const Countries = () => {
                   />
                 </div>
                 <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -129,7 +156,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294  text-white rounded shadow-2xl">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
             {brasil.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -139,8 +166,13 @@ const Countries = () => {
                     className="w-full h-auto block "
                   />
                 </div>
-                <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                <div className="p-3 ml-2 font-bold">
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -152,7 +184,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-2xl">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
             {iceland.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -162,8 +194,13 @@ const Countries = () => {
                     className="w-full h-52 block"
                   />
                 </div>
-                <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                <div className="p-3 ml-3 font-bold">
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -176,8 +213,8 @@ const Countries = () => {
             ))}
           </div>
         </div>
-        <div class="grid grid-cols-4 gap-36 mt-20">
-          <div class="bg-header w-294 text-white rounded shadow-2xl">
+        <div class="grid grid-cols-4 gap-36 mt-10">
+          <div class="bg-header w-294 text-white rounded shadow-md">
             {afg.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -188,7 +225,12 @@ const Countries = () => {
                   />
                 </div>
                 <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -200,7 +242,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-2xl">
+          <div class="bg-header w-294 text-white rounded shadow-md">
             {frace.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -211,7 +253,12 @@ const Countries = () => {
                   />
                 </div>
                 <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -223,7 +270,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-2xl">
+          <div class="bg-header w-294 text-white rounded shadow-md">
             {italia.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -234,7 +281,12 @@ const Countries = () => {
                   />
                 </div>
                 <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -246,7 +298,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-2xl">
+          <div class="bg-header w-294 text-white rounded shadow-md">
             {portugal.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -257,7 +309,12 @@ const Countries = () => {
                   />
                 </div>
                 <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
+                  <Link
+                    className="ml-36 text-blue-700"
+                    to={`/countries/${country.name.common}`}
+                  >
+                    <h3>{country.name.common}</h3>
+                  </Link>
                   <div className="font-normal">
                     <div className="mt-3 text-xs">
                       Population: {country.population}
@@ -270,13 +327,6 @@ const Countries = () => {
             ))}
           </div>
         </div>
-
-        {/*{germany.map((country) => (
-        <article key={country.name.common}>
-          <h3>{country.name.common}</h3>
-          <img src={country.flags.svg} alt={`Bandeira ${country.name.common}`} />
-    </article>
-      ))} >*/}
       </div>
     </div>
   );
