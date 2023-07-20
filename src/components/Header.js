@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Moon } from "lucide-react";
 import classnames from "classnames";
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -37,7 +39,7 @@ const Header = () => {
 
   return (
     <header className="w-full h-20 text-white bg-header flex items-center font-bold">
-      <h1 className="text-2xl ml-12">Where in the world?</h1>
+      <Link to="/"><h1 className="text-2xl ml-12">Where in the world?</h1></Link>
       <div className="ml-auto">
         <button className={buttonClasses} onClick={toggleDarkMode}>
           <Moon

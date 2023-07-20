@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 
 
 import "../style.css/countries.css";
+import { Link } from "react-router-dom";
 
 const url = "https://restcountries.com/v3.1/all";
 
@@ -25,7 +26,7 @@ const Countries = () => {
   }, []);
 
   const germany = countries.filter(
-    (country) => country.name.common === "Spain"
+    (country) => country.name.common === "Spain"    
   );
   const eua = countries.filter(
     (country) => country.name.common === "Suriname"
@@ -59,7 +60,7 @@ const Countries = () => {
                 <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />
               </button>
               <input
-                type="text"
+                type="text"np
                 className="bg-header w-full h-full ml-6  flex text-center text-white"
                 placeholder="Search for a contry..."
               />
@@ -95,7 +96,8 @@ const Countries = () => {
                     </div>
                     <p className="mt-1 text-xs">Region: {country.region}</p>
                     <p className="mt-1 text-xs">Capital: {country.capital}</p>
-                  </div>
+                  </div>                  
+                  <Link className="ml-3" to={`/countries/${country.name.common}`}>Learn More</Link>
                 </div>
               </article>
             ))}
