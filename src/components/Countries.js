@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 
-
-
 import "../style.css/countries.css";
 import { Link } from "react-router-dom";
 
 const url = "https://restcountries.com/v3.1/all";
 
- 
-
 const Countries = () => {
   const [countries, setCountries] = useState([]);
 
- 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   const fetchCountryData = async () => {
     const response = await fetch(url);
@@ -26,11 +26,9 @@ const Countries = () => {
   }, []);
 
   const germany = countries.filter(
-    (country) => country.name.common === "Spain"    
+    (country) => country.name.common === "Spain"
   );
-  const eua = countries.filter(
-    (country) => country.name.common === "Suriname"
-  );
+  const eua = countries.filter((country) => country.name.common === "Suriname");
   const brasil = countries.filter(
     (country) => country.name.common === "Brazil"
   );
@@ -40,27 +38,27 @@ const Countries = () => {
   const afg = countries.filter(
     (country) => country.name.common === "Afghanistan"
   );
-  const frace = countries.filter(
-    (country) => country.name.common === "France"
-  );
-  const italia = countries.filter(
-    (country) => country.name.common === "Italy"
-  );
+  const frace = countries.filter((country) => country.name.common === "France");
+  const italia = countries.filter((country) => country.name.common === "Italy");
   const portugal = countries.filter(
     (country) => country.name.common === "Portugal"
   );
   return (
-    
-    <div className="">      
+    <div className="">
       <div className="flex items-center justify-center mt-16 ">
         <div className="w-5/6 flex justify-between items-start  ">
           <div>
             <div className=" bg-header rounded text-center flex items-center shadow-md w-450 h-12">
-              <button>
-                <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />
-              </button>
+              <Link className="ml-3" to={`/countries/${searchTerm}`}>
+                <button>
+                  <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />
+                </button>
+              </Link>
               <input
-                type="text"np
+                value={searchTerm}
+                onChange={handleChange}
+                type="text"
+                
                 className="bg-header w-full h-full ml-6  flex text-center text-white"
                 placeholder="Search for a contry..."
               />
@@ -78,30 +76,35 @@ const Countries = () => {
       <div className="w-5/6 h-750 ml-40 ">
         <div class="grid grid-cols-4 gap-36 mt-10">
           <div className="dark-mode">
-        <div class="bg-header w-294  text-white rounded shadow-2xl">
-            {germany.map((country) => (
-              <article key={country.name.common}>
-                <div className="">
-                  <img
-                    src={country.flags.svg}
-                    alt={`Bandeira ${country.name.common}`}
-                    className="w-full h-auto block "
-                  />
-                </div>
-                <div className="p-5 font-bold">
-                  <h3>{country.name.common}</h3>
-                  <div className="font-normal">
-                    <div className="mt-3 text-xs">
-                      Population: {country.population}
+            <div class="bg-header w-294  text-white rounded shadow-2xl">
+              {germany.map((country) => (
+                <article key={country.name.common}>
+                  <div className="">
+                    <img
+                      src={country.flags.svg}
+                      alt={`Bandeira ${country.name.common}`}
+                      className="w-full h-auto block "
+                    />
+                  </div>
+                  <div className="p-5 font-bold">
+                    <h3>{country.name.common}</h3>
+                    <div className="font-normal">
+                      <div className="mt-3 text-xs">
+                        Population: {country.population}
+                      </div>
+                      <p className="mt-1 text-xs">Region: {country.region}</p>
+                      <p className="mt-1 text-xs">Capital: {country.capital}</p>
                     </div>
-                    <p className="mt-1 text-xs">Region: {country.region}</p>
-                    <p className="mt-1 text-xs">Capital: {country.capital}</p>
-                  </div>                  
-                  <Link className="ml-3" to={`/countries/${country.name.common}`}>Learn More</Link>
-                </div>
-              </article>
-            ))}
-          </div>
+                    <Link
+                      className="ml-3"
+                      to={`/countries/${country.name.common}`}
+                    >
+                      Learn More
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
           <div class="bg-header w-294  text-white rounded shadow-2xl">
             {eua.map((country) => (
@@ -267,7 +270,7 @@ const Countries = () => {
             ))}
           </div>
         </div>
-        
+
         {/*{germany.map((country) => (
         <article key={country.name.common}>
           <h3>{country.name.common}</h3>
