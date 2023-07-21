@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Pesquisa from "./Pesquisa";
 import Filtro from "./Filtro";
@@ -19,6 +19,7 @@ const Continents = () => {
 
   return (
     <div className="">
+      <Suspense fallback={<p>Carregando...</p>}>
       <div className="flex items-center justify-center mt-16 ">
         <div className="w-5/6 flex justify-between items-start  ">
           <div>
@@ -59,6 +60,7 @@ const Continents = () => {
           </div>
         ))}
       </div>
+      </Suspense>
     </div>
   );
 };
