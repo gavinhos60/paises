@@ -4,7 +4,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor:{
-        'header' : '#2b3743',
+        'header' : '#2b3743',        
+      },
+      borderColor:{
+        'borda' : "#202b35",
+      },
+      borderWidth:{
+        'borda-width':'20px',
       },
       height:{
         '750' : '750px',
