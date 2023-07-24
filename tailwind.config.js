@@ -15,11 +15,16 @@ module.exports = {
       height:{
         '750' : '750px',
         '352' : '352px',
+        '450' : '450px',
       },
       width:{
-        '450':"450px",
+        '450':"780px",
         '294':"293px",
-      }
+        'pesquisa' : '470px',
+      },
+      margin:{
+        'div' : '136px',
+      },
     }
   },
   plugins: [],
