@@ -15,7 +15,7 @@ const Continents = () => {
       setCountries(countries);
     };
     fetchCountryData();
-  }, []);
+  });
 
   return (
     <div className="">
