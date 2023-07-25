@@ -26,7 +26,7 @@ const Header = () => {
       header.classList.add("dark");
     } else {
       header.classList.remove("dark");
-    }
+    } 
   }, [darkMode]);
   
 
