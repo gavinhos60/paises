@@ -24,32 +24,32 @@ const Country = () => {
   }, [name]);
 
   return (
-    <div className="p-20 mt-16 w-full h-full text-white">
-      <div className="inline-flex items-center mb-12 ml-6 w-32 h-10 rounded bg-header shadow-black">
+    <div className="p-4 md:p-20 mt-16 w-full h-full text-white">
+      <div className="inline-flex items-center mb-8 md:mb-12 ml-4  md:ml-6 w-28 md:w-32 h-12 md:h-10 rounded bg-header shadow-black">
         <Link to="/">
-          <p className="inline-flex items-center mt-1 ml-6">
-            <MoveLeft className="mr-3" />
+          <p className="inline-flex items-center mt-1 md:mt-0 ml-2 md:ml-6">
+            <MoveLeft className="mr-2 md:mr-3" />
             Back
           </p>
         </Link>
       </div>
       {country.map((countryData) => (
-        <div key={countryData.name.common} className="flex">
-          <div className="w-450 border-borda border-borda-width rounded">
+        <div key={countryData.name.common} className="flex flex-col md:flex-row">
+          <div className=" md:border-b md:border-borda md:border-borda-width md:rounded">
             <article>
               <div className="">
                 <img
                   src={countryData.flags.svg}
                   alt={`Bandeira ${countryData.name.common}`}
-                  className="w-full h-450 block "
+                  className="w-full h-auto md:h-450 block "
                 />
               </div>
             </article>
           </div>
-          <div className="ml-32 p-16">
-            <h2 className="text-2xl font-bold mb-2">{countryData.name.common}</h2>
-            <div className="mt-8 text-xs ">
-              <div className="mt-10">
+          <div className="md:w-1/2 ml-0 md:ml-32 p-4 md:p-16">
+            <h2 className="text-xl md:text-2xl font-bold mb-2">{countryData.name.common}</h2>
+            <div className="mt-4 text-sm md:text-xs">
+              <div className="mt-4">
                 <p><strong>Native Name: </strong>{countryData.name.official}</p>
               </div>
               <div className="mt-4">
@@ -64,12 +64,13 @@ const Country = () => {
               <div className="mt-4">
                 <p><strong>Capital: </strong>{countryData.capital}</p>
               </div>
-              <div className="mt-32">
+              
+              <div className="mt-8 md:mt-32">
                 <p className="font-bold">Border Countries:</p>
                 {countryData.borders?.length > 0 ? (
-                  <ul className="flex flex-wrap ml-32 -mt-5">
+                  <ul className="flex flex-wrap ml-0 md:ml-32 mt-3 md:-mt-5">
                     {countryData.borders.map((borderCountry) => (
-                      <li key={borderCountry} className="mr-2 mb-2 px-2 py-1 border border-gray-400 rounded">
+                      <li key={borderCountry} className="mr-2 md:mr-4 mb-2 px-2 py-1 border border-gray-400 rounded">
                         {borderCountry}
                       </li>
                     ))}
@@ -79,15 +80,6 @@ const Country = () => {
                 )}
               </div>
             </div>
-          </div>
-          <div className="">
-            <div className="mt-div text-xs m-auto ">
-              <p><strong>Top Level Domain: </strong>{countryData.tld}</p>
-            </div>
-            <div className="mt-4 text-xs ">
-              <p><strong>Fifa: </strong>{countryData.fifa}</p>
-            </div>
-            
           </div>
         </div>
       ))}

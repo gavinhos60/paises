@@ -24,6 +24,7 @@ module.exports = {
       },
       margin:{
         'div' : '136px',
+        'left': '915px'
       },
     }
   },

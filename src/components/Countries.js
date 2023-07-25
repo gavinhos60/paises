@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 import "../style.css/countries.css";
 import { Link } from "react-router-dom";
 import Pesquisa from "./Pesquisa";
@@ -9,7 +8,7 @@ import Filtro from "./Filtro";
 const url = "https://restcountries.com/v3.1/all";
 
 const Countries = () => {
-  const [countries, setCountries] = useState([]);  
+  const [countries, setCountries] = useState([]);
 
   const fetchCountryData = async () => {
     const response = await fetch(url);
@@ -40,19 +39,20 @@ const Countries = () => {
     (country) => country.name.common === "Portugal"
   );
 
-  
   return (
-    <div className="">
-      <div className="flex items-center justify-center mt-16 ">
-        <div className="w-5/6 flex justify-between items-start  ">
+    <div className="container  ml-20">
+      <div className="flex justify-center mt-16 ">
+        <div className="w-full md:w-5/6 flex flex-col md:flex-row  md:-ml-24">
           <div>
-         <Pesquisa />
-          </div>         
-            <Filtro />          
+            <Pesquisa />
+          </div>
+          <div className="md:ml-left ml-12">
+            <Filtro />
+          </div>
         </div>
       </div>
-      <div className="w-5/6 h-750 ml-40 ">
-        <div class="grid grid-cols-4 gap-36 mt-10">
+      <div className="w-full md:w-5/6 ml-5 md:ml-20 mt-10 ">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="dark-mode">
             <div class="bg-header w-294 h-92 text-white rounded shadow-md">
               {germany.map((country) => (
@@ -83,7 +83,7 @@ const Countries = () => {
               ))}
             </div>
           </div>
-          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md md:ml-28">
             {eua.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -111,7 +111,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md md:ml-56">
             {brasil.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -139,7 +139,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 h-352 text-white rounded shadow-md">
+          <div class="bg-header w-294 h-352 text-white rounded shadow-md md:ml-80">
             {iceland.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -168,7 +168,7 @@ const Countries = () => {
             ))}
           </div>
         </div>
-        <div class="grid grid-cols-4 gap-36 mt-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-12 ">
           <div class="bg-header w-294 text-white rounded shadow-md">
             {afg.map((country) => (
               <article key={country.name.common}>
@@ -197,7 +197,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-md">
+          <div class="bg-header w-294 text-white rounded shadow-md md:ml-28">
             {frace.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -225,7 +225,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-md">
+          <div class="bg-header w-294 text-white rounded shadow-md md:ml-56">
             {italia.map((country) => (
               <article key={country.name.common}>
                 <div className="">
@@ -253,7 +253,7 @@ const Countries = () => {
               </article>
             ))}
           </div>
-          <div class="bg-header w-294 text-white rounded shadow-md">
+          <div class="bg-header w-294 text-white rounded shadow-md md:ml-80">
             {portugal.map((country) => (
               <article key={country.name.common}>
                 <div className="">

@@ -16,7 +16,7 @@ const Filtro = () => {
   // Se não precisar, você pode simplesmente remover o useEffect.
 
   return (
-    <div>
+    <div className="md:mt-0 mt-10">
       <select
         className="bg-header text-xs h-12 ml-6 text-center w-48 text-white rounded"
         onChange={handleSelectChange}
