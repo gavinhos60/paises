@@ -11,7 +11,7 @@ const Pesquisa = () => {
 
   return (
     <div>      
-      <div className=" bg-header rounded text-center flex items-center  w-pesquisa h-12">
+      <div className=" bg-header rounded text-center flex items-center  md:w-pesquisa w-80 h-12">
       <Link className="ml-3" to={`/countries/${searchTerm}`}>
           <button>
             <Search color="white" size={26} className=" ml-6 mr-2 mb-1" />

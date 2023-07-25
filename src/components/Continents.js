@@ -6,6 +6,7 @@ import Filtro from "./Filtro";
 const Continents = () => {
   const [countries, setCountries] = useState([]);
   const { name } = useParams();
+
   useEffect(() => {
     const fetchCountryData = async () => {
       const response = await fetch(
@@ -15,29 +16,32 @@ const Continents = () => {
       setCountries(countries);
     };
     fetchCountryData();
-  });
+  }, [name]);
+
+  
 
   return (
-    <div className="">
+    <div className="container ml-20">
       <Suspense fallback={<p>Carregando...</p>}>
-      <div className="flex items-center justify-center mt-16 ">
-        <div className="w-5/6 flex justify-between items-start  ">
-          <div>
-            <Pesquisa />
+        <div className="flex justify-center mt-16">
+          <div className="w-full md:w-5/6 flex flex-col md:flex-row md:-ml-24">
+            <div>
+              <Pesquisa />
+            </div>
+            <div className="md:ml-left ml-12">
+              <Filtro />
+            </div>
           </div>
-          <Filtro />
         </div>
-      </div>
-      <div className="w-5/6 h-750 ml-40 grid grid-cols-4 gap-36 mt-10">
-        {countries.map((country) => (
-          <div key={country.name.common} className="dark-mode">
-            <div className="bg-header w-294 h-92 text-white rounded shadow-md">
-              <article>
+        <div className="grid md:gap-x-72 grid-cols-1 md:grid-cols-4 md:ml-20">
+          {countries.map((country) => (
+            <article key={country.name.common}>
+              <div className="bg-header w-294 h-92 text-white rounded shadow-md mt-10">
                 <div className="">
                   <img
                     src={country.flags.svg}
                     alt={`Bandeira ${country.name.common}`}
-                    className="w-full h-auto block "
+                    className="w-full h-auto block"
                   />
                 </div>
                 <div className="p-5 font-bold">
@@ -55,11 +59,10 @@ const Continents = () => {
                     <p className="mt-1 text-xs">Capital: {country.capital}</p>
                   </div>
                 </div>
-              </article>
-            </div>
-          </div>
-        ))}
-      </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </Suspense>
     </div>
   );
