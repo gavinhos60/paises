@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 const Country = () => {
   const [country, setCountry] = useState([]);
+
   const { name } = useParams();
 
   useEffect(() => {
@@ -11,10 +12,14 @@ const Country = () => {
       const response = await fetch(
         "https://restcountries.com/v3.1/name/" + name
       );
-      const country = await response.json();
+      const countryData = await response.json();
 
-      setCountry(country);
+      // The API response contains an object, not an array.
+      // We need to convert it to an array for mapping in the component.
+      const countryArray = countryData instanceof Array ? countryData : [countryData];
+      setCountry(countryArray);
     };
+
     fetchCountryData();
   }, [name]);
 
@@ -28,52 +33,61 @@ const Country = () => {
           </p>
         </Link>
       </div>
-      {country.map((country) => (
-        <div key={country.name.common} className="flex">
+      {country.map((countryData) => (
+        <div key={countryData.name.common} className="flex">
           <div className="w-450 border-borda border-borda-width rounded">
             <article>
               <div className="">
                 <img
-                  src={country.flags.svg}
-                  alt={`Bandeira ${country.name.common}`}
+                  src={countryData.flags.svg}
+                  alt={`Bandeira ${countryData.name.common}`}
                   className="w-full h-450 block "
                 />
               </div>
             </article>
           </div>
           <div className="ml-32 p-16">
-            <h2 className="text-2xl font-bold mb-2">{country.name.common}</h2>
+            <h2 className="text-2xl font-bold mb-2">{countryData.name.common}</h2>
             <div className="mt-8 text-xs ">
               <div className="mt-10">
-              <p><strong>Native Name: </strong>{country.name.official}</p>
+                <p><strong>Native Name: </strong>{countryData.name.official}</p>
               </div>
               <div className="mt-4">
-              <p><strong>Population: </strong>{country.population}</p>
+                <p><strong>Population: </strong>{countryData.population}</p>
               </div>
               <div className="mt-4">
-              <p><strong>Region: </strong>{country.region}</p>
+                <p><strong>Region: </strong>{countryData.region}</p>
               </div>
               <div className="mt-4">
-              <p><strong>Sub Region: </strong>{country.subregion}</p>
+                <p><strong>Sub Region: </strong>{countryData.subregion}</p>
               </div>
               <div className="mt-4">
-              <p><strong>Capital: </strong>{country.capital}</p>
+                <p><strong>Capital: </strong>{countryData.capital}</p>
               </div>
               <div className="mt-32">
-              <p><strong>Border Countries: </strong>{country.capital}</p>
+                <p className="font-bold">Border Countries:</p>
+                {countryData.borders?.length > 0 ? (
+                  <ul className="flex flex-wrap ml-32 -mt-5">
+                    {countryData.borders.map((borderCountry) => (
+                      <li key={borderCountry} className="mr-2 mb-2 px-2 py-1 border border-gray-400 rounded">
+                        {borderCountry}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>Nothing</p>
+                )}
               </div>
             </div>
           </div>
-          <div>
-          <div className="mt-div text-xs ml-16 ">
-              <p><strong>Top Level Domain: </strong>{country.tld}</p>
-          </div>
-          <div className="mt-4 text-xs ml-16 ">
-              <p><strong>Fifa: </strong>{country.fifa}</p>
-          </div>
-          <div className="mt-4 text-xs ml-16 ">
-              <p><strong>Timezone: </strong>{country.timezones}</p>
-          </div>
+          <div className="">
+            <div className="mt-div text-xs m-auto ">
+              <p><strong>Top Level Domain: </strong>{countryData.tld}</p>
+            </div>
+            <div className="mt-4 text-xs ">
+              <p><strong>Fifa: </strong>{countryData.fifa}</p>
+            </div>
+            
           </div>
         </div>
       ))}
